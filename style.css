@@ -14,10 +14,27 @@ body{
     width:100%;
     height:100%;
     max-width:600px;
-    background:linear-gradient(#80FFD8,#64DFDF,#48BFE3,#5390D9,#5E60CE);
+    background:linear-gradient(#14045f,#331a99,#282bce,#1555ec,#1e84f7);
     border-left:1px solid #eee;
     border-right:1px solid #eee;
 }
+.app .screen .cover{
+    background:white;
+    
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    animation: fade-out 4s;
+}
+@keyframes fade-out{
+    0%,85%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
 .app > .screen{
     display:none;
 }
@@ -26,22 +43,90 @@ body{
     width:100%;
     height:100%;
 }
-.screen .form {
+.app .screen .cover img{
+    position:absolute;
+    top:20%;
+    right:15%;
+    height:60%;
+    width:80%;
+}
+.form-popup{
+    position: fixed;
+    width:100%;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    max-width: 720px;
+    background: #fff;
+    border: 2px solid #fff;
+    transform: translate(-50%, -70%);
+    animation: fde-out 4s;
+}
+@keyframes fde-out{
+    0%,90%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+ .form-popup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, opacity 0.1s;
+}
+.form-popup .form-box {
+    display: flex;
+}
+
+
+.form-popup .signup,
+.form-popup.show-signup .login {
+    display: none;
+}
+
+.form-popup.show-signup .signup {
+    display: flex;
+}
+
+.form-popup .form .bottom-link a{
+    color:#060906;
+}
+
+.form-popup .form .bottom-link a:hover{
+    color:red;
+}
+
+
+.screen .form-box {
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
     width:80%;
     max-width:400px;
+    background:transparent;
+    border:2px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+    color:#fff;
+    border-radius:10px;
+    padding:30px 40px;
+margin:0px;
 }
 .screen .form-input{
     width:100%;
+    height:50px;
     margin:20px 0px;
 }
 .screen h2{
     margin-bottom:20px;
     font-size:30px;
-    color:#111;
+    text-align:center;
+    color:#fff;
     border-bottom:4px solid #555;
     padding:5px 0px;
     display:inline-block;
@@ -49,17 +134,31 @@ body{
 .screen .form-input input{
     width:100%;
     padding:10px;
-    border:1px solid #555;
+    background:transparent;
+    border:none;
+    outline:none;
+    border:2px solid rgba(255,255,255,2);
+    border-radius:40px;
     font-size:16px;
+    color:#fff;
+    padding:20px 45px 20px 20px;
+}
+.screen .form-input input::placeholder{
+    color:#fff;
 }
 .screen .form-input button{
+    width:100%;
+    height:45px;
+    background:#fff;
+    border:none;
+    outline:none;
+    border-radius:40px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
     padding:10px 20px;
-    background:#111;
-    color:#eee;
+    color:#333;
     font-size:16px;
     cursor:pointer;
-    outline:none;
-    border:none;
+    font-weight:600;
 }
 .chat-screen .header{
     background:#111;
@@ -120,18 +219,26 @@ body{
     padding:10px;
     font-style:italic;
 }
-.chat-screen .typebox input{
+.chat-screen .typebox #message-input{
     flex:1;
-    padding:10px;
+    background:transparent;
+    padding:5px 5px 5px 5px;;
     height:35px;
+    width:85%;
+    border:none;
+    outline:none;
     font-size:18px;
-   
+   border:2px solid rgba(255,255,255,2);
+   border-radius:5px;
+   color:#fff;
 }
+
+
 .chat-screen .typebox button{
-    width:50px;
-    height:100%;
-    background:#111;
-    color:#eee;
+    width:12%;
+    height:34px;
+    background:#fff;
+    color:#111;
     font-size:16px;
     outline:none;
     border:none;
